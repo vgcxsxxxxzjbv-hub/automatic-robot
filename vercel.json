@@ -1,8 +1,22 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/webhook.py", "use": "@vercel/python" },
-    { "src": "api/file.py",    "use": "@vercel/python" }
+    {
+      "src": "api/webhook.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.11",
+        "includeFiles": ["bot/**", "requirements.txt"]
+      }
+    },
+    {
+      "src": "api/file.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.11",
+        "includeFiles": ["bot/**"]
+      }
+    }
   ],
   "routes": [
     { "src": "/file/(.*)",   "dest": "/api/file.py" },
